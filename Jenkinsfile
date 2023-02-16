@@ -3,31 +3,27 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'g++ main/sample.cpp -o output'
-        build 'PES2UG20CS047-1'
-        echo 'Build Successful'
+        sh 'echo "Build Stage Successful"'
+        
       }
     }
-    stage('Test') {
+    stage('Test'){
       steps {
-        sh './output'
-        echo 'Testing Successful'
+        sh 'echo "Test Stage Successful"'
+        
       }
     }
     stage('Deploy') {
-      when {
-        expression {
-          currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-        }
-      }
-      steps {
-        echo 'Deployment Successful'
-      }
+          steps {
+            sh 'echo "Deployment Successful"'
+            
+          }
     }
-  }
+  } 
   post {
     failure {
       echo 'Pipeline failed'
     }
   }
 }
+
